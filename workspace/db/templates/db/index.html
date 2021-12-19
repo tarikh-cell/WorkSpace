@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <div id="App">
+            <p>user  [[user.username]]</p>
+            <p>[[user.password]]</p>
+        </div>
+    </body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let myApp = Vue.createApp({
+            delimiters: ["[[", "]]"],
+            data() {
+                return {
+                    user: null,
+                }
+            },
+            async created() {
+                let response = await fetch("{% url 'user api' %}");
+                if (response.ok) {
+                    let data = await response.json();
+                    this.user = data.user;
+                }
+                else {
+                    alert("Failed to load user data");
+                }
+            },
+        })
+        myApp.mount('#App')
+    </script>
+</html>

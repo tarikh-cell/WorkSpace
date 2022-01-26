@@ -5,7 +5,10 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, user_name, first_name, password, **other_fields):
+        other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
+        other_fields.setdefault('is_active', True)
+
         return self.create_user(email, user_name, first_name, password, **other_fields)
 
     def create_user(self, email, user_name, first_name, password, **other_fields):
@@ -23,7 +26,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150, blank=True)
-    
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 

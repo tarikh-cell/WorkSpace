@@ -6,3 +6,4 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ('id', 'title', 'author', 'description')
         
+        

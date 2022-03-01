@@ -10,6 +10,14 @@ from rest_framework.permissions import AllowAny
 #from django.views.decorators.csrf import csrf_exempt
 from rest_framework_simplejwt.tokens import RefreshToken
 
+class GetUser(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response({
+        'ID' : self.request.user.id,
+        })
+
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 

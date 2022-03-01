@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     title = models.TextField(max_length=250) 
-    description = models.TextField()
+    description = models.JSONField()
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='documents_posts'
     )

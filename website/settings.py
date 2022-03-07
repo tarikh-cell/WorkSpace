@@ -142,10 +142,6 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:19006'
-]
-
 AUTH_USER_MODEL = "users.User"
 
 SIMPLE_JWT = {
